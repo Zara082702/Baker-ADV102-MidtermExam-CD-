@@ -28,7 +28,6 @@ export default function CDManagerApp() {
     'Pacifico': require('../../font/Pacifico-Regular.ttf'),
   });
 
-  // UPDATED INVENTORY TITLES
   const [inventory, setInventory] = useState<CD[]>([
     { id: 1, title: 'The Conjuring 2013', artist: 'James Wan', copies: 5 },
     { id: 2, title: 'Toy Story', artist: 'John Lasseter', copies: 4 },
@@ -51,14 +50,12 @@ export default function CDManagerApp() {
   const saveData = async () => {
     try {
       const data = { inventory, borrowedList, totalIncome, allTimeBorrowed };
-      // UPDATED KEY TO v4 TO CLEAR OLD DATA
       await AsyncStorage.setItem('@cd_store_updated_v4', JSON.stringify(data));
     } catch (e) { console.error("Save Error"); }
   };
 
   const loadData = async () => {
     try {
-      // UPDATED KEY TO v4 TO MATCH
       const saved = await AsyncStorage.getItem('@cd_store_updated_v4');
       if (saved) {
         const parsed = JSON.parse(saved);
